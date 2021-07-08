@@ -13,7 +13,7 @@ module.exports = (sequelize,DataTypes) =>{
     })
 
     Customer.associate = models =>{
-        Customer.hasMany(models.Order);
+        Customer.hasMany(models.Orders);
     }
 
     return Customer;

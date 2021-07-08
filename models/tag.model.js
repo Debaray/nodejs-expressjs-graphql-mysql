@@ -8,14 +8,14 @@ module.exports = (sequelize,DataTypes) =>{
         },
         name: {
             type: DataTypes.STRING,
-            unique: true,
-            allowNull: false
+            // unique: true,
+            // allowNull: false
         },
-        slug: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
-        },
+        // slug: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        //     unique: true
+        // },
         description: DataTypes.STRING
     },{
         paranoid: true,
@@ -24,7 +24,8 @@ module.exports = (sequelize,DataTypes) =>{
     });
 
     Tag.associate = function(models){
-        Tag.belongsToMany(models.Post, {through: 'post_tag'});
+        // Tag.belongsToMany(models.Product, {through: 'post_tag'});
+        Tag.belongsToMany(models.Product, {through: 'ProductTags'});
     }
 
 

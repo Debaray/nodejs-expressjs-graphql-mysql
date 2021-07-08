@@ -13,7 +13,7 @@ module.exports = (sequelize,DataTypes) =>{
     });
 
     Payment.associate = models =>{
-        Payment.hasOne(models.Order);
+        Payment.hasOne(models.Orders);
     }
 
     return Payment;

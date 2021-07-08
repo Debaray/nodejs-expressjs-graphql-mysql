@@ -11,5 +11,8 @@ module.exports = (sequelize,DataTypes) =>{
         price: DataTypes.DECIMAL,
     });
 
+    Product.associate = models =>{
+       Product.belongsToMany(models.Tag, {through: 'ProductTags'});
+    }
     return Product;
 }

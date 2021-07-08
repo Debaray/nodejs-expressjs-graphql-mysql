@@ -1,5 +1,5 @@
 module.exports =(sequelize,DataTypes) =>{
-    const Order = sequelize.define('Order',{
+    const Orders= sequelize.define('Orders',{
         id:{ 
             type: DataTypes.UUID,
             primaryKey: true,
@@ -11,10 +11,10 @@ module.exports =(sequelize,DataTypes) =>{
         invoiceNumber: DataTypes.STRING,
     });
 
-    Order.associate = models =>{
-        Order.belongsTo(models.Customer);
-        Order.hasMany(models.Product);
+    Orders.associate = models =>{
+        Orders.belongsTo(models.Customer);
+        Orders.hasMany(models.Product);
     };
 
-    return Order;
+    return Orders;
 }
