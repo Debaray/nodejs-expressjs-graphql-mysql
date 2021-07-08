@@ -23,7 +23,9 @@ app.get("/",(req,res) =>{
 
 
 
-
+db.sequelize.sync().then(() =>{
+  console.log("sync db");
+})
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,

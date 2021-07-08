@@ -1,7 +1,6 @@
 const {buildSchema} = require('graphql');
-const {gql} = require('graphql-tag');
 
-const baseSchema = buildSchema(gql,`
+const baseSchema = buildSchema(`
 scalar Date
 
 type Query {
