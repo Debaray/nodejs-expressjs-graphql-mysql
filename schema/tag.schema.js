@@ -13,11 +13,11 @@ type  Tag{
     updateAt: DateTime  # will be generated
 }
 
-extend type Query {
+type Query {
 
 }
 
-extend type mutation { 
+type mutation { 
 
 }`;
 module.exports = tagSchema;

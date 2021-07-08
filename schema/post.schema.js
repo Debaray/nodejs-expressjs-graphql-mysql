@@ -15,14 +15,14 @@ type Post {
     updateAt: DateTime! # will be generated
 }
 
-extend type Query {
+type Query {
 
     allpost: [Post]
     fetchPost(id: Int!) : Post
 
 }
 
-extend type mutation {
+type mutation {
 
     addPost(title: String!, content: String!, status: Boolean, tags: [Int!]!): Post
     updatePost(

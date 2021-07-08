@@ -13,15 +13,15 @@ type User {
     updateAt: DateTime! #will be generated
     
 }
-extend type Query {
+type Query {
 
     allUsers:[User]
     fetchUser(id: Int!): User
      
 }
-extend type mutation {
+type mutation {
 
-    login(email: String!, password: String!): String
+
     createUser(firstName: String!,lastName: String, email: String!, password: String!): User
     updateUser(id: Int!,
         firstName: String!,
@@ -32,3 +32,4 @@ extend type mutation {
 }
 `;
 module.exports = userSchema;
+// login(email: String!, password: String!): String
