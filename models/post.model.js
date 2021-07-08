@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) =>{
         deleteAt: 'deleteAT',
     }); 
     Post.associate = function(models){
-        Post.belongsTo(models.User)
+        Post.belongsTo(models.User);
+        Post.belongsToMany(models.Tag, {through: 'post_tag'});
     };
     return Post;
 }

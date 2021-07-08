@@ -1,7 +1,7 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { buildSchema } = require('graphql');
- 
+const db= require("./models");
 // Construct a schema, using GraphQL schema language
 const schema = buildSchema(`
   type Query {
@@ -21,7 +21,7 @@ app.get("/",(req,res) =>{
   res.json({message: "Welcome to the application"})
 })
 
-const db= require("./models");
+
 
 db.sequelize.sync({force : true}).then(() =>{
   console.log("Drop and re-sync db");
