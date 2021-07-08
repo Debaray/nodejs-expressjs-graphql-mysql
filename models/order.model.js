@@ -13,6 +13,7 @@ module.exports =(sequelize,DataTypes) =>{
 
     Order.associate = models =>{
         Order.belongsTo(models.Customer);
+        Order.hasMany(models.Product);
     };
 
     return Order;

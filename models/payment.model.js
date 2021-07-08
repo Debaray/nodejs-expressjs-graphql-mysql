@@ -1,15 +1,20 @@
+
 module.exports = (sequelize,DataTypes) =>{
-    const Product = sequelize.define('Product',{
-        id: {
+    const Payment = sequelize.define('Payment',{
+        id:{
             type: DataTypes.UUID,
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             autoIncrement: false,
         },
-        name: DataTypes.STRING,
-        price: DataTypes.DECIMAL,
+        status: DataTypes.STRING,
+        amount: DataTypes.DECIMAL
     });
 
-    return Product;
+    Payment.associate = models =>{
+        Payment.hasOne(models.Order);
+    }
+
+    return Payment;
 }
