@@ -17,6 +17,16 @@ const root = {
 };
  
 const app = express();
+app.get("/",(req,res) =>{
+  res.json({message: "Welcome to the application"})
+})
+
+const db= require("./models");
+
+db.sequelize.sync({force : true}).then(() =>{
+  console.log("Drop and re-sync db");
+})
+
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,

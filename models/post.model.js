@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) =>{
         paranoid: true,
         timestamps: true,
         deleteAt: 'deleteAT',
-    });
+    }); 
     Post.associate = function(models){
         Post.belongsTo(models.User)
     };
