@@ -24,7 +24,7 @@ module.exports = (sequelize,DataTypes) =>{
     });
 
     Tag.associate = function(models){
-        Tag.belongsToMany(models.Post, {through: 'post-tag'});
+        Tag.belongsToMany(models.Post, {through: 'post_tag'});
     }
 
 
