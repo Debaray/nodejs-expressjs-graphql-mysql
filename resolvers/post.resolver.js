@@ -24,7 +24,7 @@ module.exports = {
         },
         async updatePost(_,{id,title, content,status,tags}){
             const post = await db.Post.findById(id);
-            const post = await post.update({
+            await post.update({
                 title,
                 content,
                 status
