@@ -1,6 +1,6 @@
 const {buildSchema} = require('graphql');
 
-const postSchema = `
+module.exports = buildSchema(`
 scalar DateTime
 
 type Post {
@@ -9,7 +9,6 @@ type Post {
     slug: String!
     content: String!
     status: Boolean!
-    user: User!
     tags:[Tag!]!
     createAt: DateTime! # will be generated
     updateAt: DateTime! # will be generated
@@ -32,9 +31,8 @@ type mutation {
         status: Boolean,
         tags: [Int!]!
     ): Post
-
-
+    deletePost(
+        id: Int!
+    ):Boolean
 }
-`;
-
-module.exports = postSchema;
+`);

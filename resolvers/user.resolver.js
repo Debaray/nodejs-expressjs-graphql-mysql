@@ -1,4 +1,3 @@
-const { Error } = require("sequelize/types");
 const db = require("../models")
 
 const resolver ={
@@ -30,10 +29,14 @@ const resolver ={
         },
         async updateUser(_,{id,firstName,lastName,email,password}){
                 const user = await db.User.findById(id);
+                if(!user){
+                    throw new Error('No user found for update, please check userid');
+                }
                 await user.update({
                     firstName,lastName
                 });
+                return user;
         }
 
     }
-}
+} 

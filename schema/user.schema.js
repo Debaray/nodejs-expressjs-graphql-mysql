@@ -1,6 +1,6 @@
 const {buildSchema} = require('graphql');
 
-const userSchema = `
+module.exports = buildSchema(`
 scalar DateTime
 
 type User {
@@ -8,7 +8,7 @@ type User {
     firstName: String!
     lastName: String
     email: String!
-    posts: [Post]
+    post: [Post]
     createAt: DateTime! # will be generated
     updateAt: DateTime! #will be generated
     
@@ -30,6 +30,5 @@ type mutation {
         password: String!
         ): User
 }
-`;
-module.exports = userSchema;
+`);
 // login(email: String!, password: String!): String

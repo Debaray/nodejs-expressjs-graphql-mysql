@@ -1,6 +1,6 @@
 const {buildSchema} = require('graphql');
 
-const tagSchema = `
+module.exports = buildSchema(`
 
 scalar DateTime
 
@@ -14,10 +14,23 @@ type  Tag{
 }
 
 type Query {
-
+    allTags: [Tag]
+    fetchTag(id: Int!): Tag
 }
 
 type mutation { 
 
-}`;
-module.exports = tagSchema;
+    addTag(
+        name: String!,
+        description: String
+    ): Tag
+    updateTag (
+        id: Int!,
+        name: String!,
+        description: String
+    ): Tag
+    deleteTag(
+        id: Int!
+    ): Boolean
+
+}`);

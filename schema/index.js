@@ -1,8 +1,7 @@
 const {buildSchema} = require('graphql');
-const UserSchema = require('./user.schema');
-const PostSchema = require('./post.schema');
-const TagSchema = require('./tag.schema');
-const userSchema = require('./user.schema');
+const User = require('./user.schema');
+const Post = require('./post.schema');
+const Tag = require('./tag.schema');
 
 const baseSchema = buildSchema(`
 scalar Date
@@ -20,4 +19,4 @@ type Subscription {
 }
 `);
 
-module.exports = [baseSchema, userSchema, PostSchema, TagSchema];
+module.exports = [baseSchema, User, Post, Tag];
