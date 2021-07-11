@@ -1,24 +1,22 @@
-const {buildSchema} = require('graphql');
+const {gql} = require('apollo-server-express');
 
-module.exports = buildSchema(`
+module.exports = gql`
 
-scalar DateTime
 
 type  Tag{
     id: Int!
     name: String!
     description: String!
-    posts:[Post]
     createdAt: DateTime # will be generated
-    updateAt: DateTime  # will be generated
+    updatedAt: DateTime  # will be generated
 }
 
-type Query {
+extend type Query {
     allTags: [Tag]
     fetchTag(id: Int!): Tag
 }
 
-type mutation { 
+extend  type Mutation { 
 
     addTag(
         name: String!,
@@ -33,4 +31,4 @@ type mutation {
         id: Int!
     ): Boolean
 
-}`);
+}`;

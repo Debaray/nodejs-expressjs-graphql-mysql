@@ -1,6 +1,6 @@
 
 module.exports = (sequelize,DataTypes) =>{
-    const Customer = sequelize.define('Customer',{
+    const Customers = sequelize.define('Customers',{
         id: {
             type: DataTypes.UUID,
             primaryKey: true,
@@ -12,9 +12,9 @@ module.exports = (sequelize,DataTypes) =>{
         email: DataTypes.STRING,
     })
 
-    Customer.associate = models =>{
-        Customer.hasMany(models.Orders);
+    Customers.associate = models =>{
+        Customers.hasMany(models.Orders);
     }
 
-    return Customer;
+    return Customers;
 }

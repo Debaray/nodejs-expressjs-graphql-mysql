@@ -3,38 +3,38 @@ const db = require("../models");
 module.exports = {
     Query: {
 
-        async allPost(){
-            return await db.Post.findAll({})
+        async allPosts(){
+            return await db.Posts.findAll({})
         },
-        async fetchPost({id}){
-            return await db.Post.findById(id)
+        async fetchPost(_, {id}){
+            // console.log(_, props);
+            return await db.Posts.findByPk(id)
         }
 
     },
     Mutation:{
 
         async addPost(_,{title,content,status, tags}){
-                const post = await db.Post.create({
+                const post = await db.Posts.create({
                     title,
                     content,
-                    status
+                    status,tags
                 });
-                await post.setTags(tags);
                 return post;
         },
         async updatePost(_,{id,title, content,status,tags}){
-            const post = await db.Post.findById(id);
+            const post = await db.Posts.findByPk(id);
             await post.update({
                 title,
                 content,
                 status
             });
-            await post.setTags(tags);
+            
             return post;
 
         },
         async deletePost(_,{id}){
-            const post = await db.Post.findById(id);
+            const post = await db.Posts.findByPk(id);
             return await post.destroy();
         }
 

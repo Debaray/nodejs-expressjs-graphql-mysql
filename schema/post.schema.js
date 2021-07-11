@@ -1,38 +1,34 @@
-const {buildSchema} = require('graphql');
+const {gql} = require('apollo-server-express');
 
-module.exports = buildSchema(`
-scalar DateTime
+module.exports = gql`
 
 type Post {
     id:Int!
     title: String!
-    slug: String!
     content: String!
     status: Boolean!
-    tags:[Tag!]!
-    createAt: DateTime! # will be generated
-    updateAt: DateTime! # will be generated
+    createdAt: DateTime! # will be generated
+    updatedAt: DateTime! # will be generated
 }
 
-type Query {
+extend type Query {
 
-    allpost: [Post]
+    allPosts: [Post]
     fetchPost(id: Int!) : Post
 
 }
 
-type mutation {
+extend type Mutation {
 
-    addPost(title: String!, content: String!, status: Boolean, tags: [Int!]!): Post
+    addPost(title: String!, content: String!, status: Boolean): Post
     updatePost(
         id: Int!,
         title: String!,
         content: String!,
         status: Boolean,
-        tags: [Int!]!
     ): Post
     deletePost(
         id: Int!
     ):Boolean
 }
-`);
+`;

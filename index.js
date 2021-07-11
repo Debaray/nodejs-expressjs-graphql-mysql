@@ -1,39 +1,35 @@
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
-const { buildSchema } = require('graphql');
-const db= require("./models");
-// Construct a schema, using GraphQL schema language
-// const schema = buildSchema(`
-//   type Query {
-//     hello: String
-//   }
-// `);
-
+const { ApolloServer } = require('apollo-server-express');
 const schema = require('./schema');
+const resolvers = require('./resolvers');
+const db = require("./models");
+const http = require('http');
 
- 
-// The root provides a resolver function for each API endpoint
-const root = require('./resolvers');
-// const root = {
-//   hello: () => {
-//     return 'Hello world!';
-//   },
-// };
- 
-const app = express();
-app.get("/",(req,res) =>{
-  res.json({message: "Welcome to the application"})
-})
-
-db.sequelize.sync().then(() =>{
+db.sequelize.sync().then(() => {
   console.log("sync db");
 })
-console.log(schema);
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-}));
+
+const app = express();
+
+const server = new ApolloServer({
+  introspection: true,
+  typeDefs: schema,
+  resolvers,
+});
+
+
+server.applyMiddleware({ app, path: '/graphql' });
+
+const httpServer = http.createServer(app);
+server.installSubscriptionHandlers(httpServer);
 const port = process.env.PORT || 4000;
-app.listen(port);
-console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`);
+// server.use(
+//   '/graphiql',
+//   graphiqlExpress({
+//     endpointURL: '/graphql',
+//   }),
+// )
+
+httpServer.listen({ port }, () => {
+  console.log(`Server ready at http://localhost:${port}/graphql}`)
+});

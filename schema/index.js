@@ -1,9 +1,11 @@
-const {buildSchema} = require('graphql');
+
 const User = require('./user.schema');
 const Post = require('./post.schema');
 const Tag = require('./tag.schema');
 
-const baseSchema = buildSchema(`
+const {gql} = require('apollo-server-express');
+
+baseSchema = gql`
 scalar Date
 
 type Query {
@@ -17,6 +19,6 @@ type Mutation {
 type Subscription {
     _: Boolean
 }
-`);
+`;
 
 module.exports = [baseSchema, User, Post, Tag];

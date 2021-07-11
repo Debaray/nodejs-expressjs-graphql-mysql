@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>{
-    const Post = sequelize.define('Post',{
+    const Posts = sequelize.define('Posts',{
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -28,9 +28,9 @@ module.exports = (sequelize, DataTypes) =>{
         timestamps: true,
         deleteAt: 'deleteAT',
     }); 
-    Post.associate = function(models){
-        Post.belongsTo(models.User);
+    Posts.associate = function(models){
+        Posts.belongsTo(models.Users);
         // Post.belongsToMany(models.Tag, {through: 'post_tag'});
     };
-    return Post;
+    return Posts;
 }

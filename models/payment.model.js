@@ -1,6 +1,6 @@
 
 module.exports = (sequelize,DataTypes) =>{
-    const Payment = sequelize.define('Payment',{
+    const Payments = sequelize.define('Payments',{
         id:{
             type: DataTypes.UUID,
             primaryKey: true,
@@ -12,9 +12,9 @@ module.exports = (sequelize,DataTypes) =>{
         amount: DataTypes.DECIMAL
     });
 
-    Payment.associate = models =>{
-        Payment.hasOne(models.Orders);
+    Payments.associate = models =>{
+        Payments.hasOne(models.Orders);
     }
 
-    return Payment;
+    return Payments;
 }
